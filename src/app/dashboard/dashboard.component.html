@@ -1,0 +1,15 @@
+<div class="row">
+<div class="center col-sm-9">
+<h2>Ostatnie warki</h2>
+<div class="last-brews">
+  <a *ngFor="let brew of brews | slice:0:6" class="col-md-3"
+      routerLink="/brews/{{brew.id}}">
+    <div class="module brew">
+      <h4>{{brew.name}}</h4>
+      <img src="{{brew.label}}"/>
+    </div>
+  </a>
+</div>
+</div>
+</div>
+

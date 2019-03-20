@@ -1,0 +1,14 @@
+header.banner {
+	height: 100px;
+	padding-top: 26px;
+}
+
+app-messages {
+		display: none!important;
+	}
+
+@media screen and (min-device-aspect-ratio: 1/1) {
+	app-messages {
+		display: block!important;
+	}
+}

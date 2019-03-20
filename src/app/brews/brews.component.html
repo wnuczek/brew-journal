@@ -1,0 +1,80 @@
+<div class="row brews"> 
+  <div class="col-md-4 col-lg-4">
+  <h2>Lista warek</h2>
+<!--
+<app-brew-search></app-brew-search>
+-->
+  <div *ngIf="brews">Ilość warek: {{brews.length}}</div>
+  <ul class="brews">
+    <li *ngFor="let brew of brews" (click)="onSelect(brew)" [class.selected]="brew === selectedBrew || id==brew.id">
+      <div class="brew" routerLink="/brews/{{brew.id}}">
+        <span class="badge">{{brew.number}}</span> 
+        <div class="info">
+          <div class="name">{{brew.name}}</div>
+          <div class="details">styl: <b>{{brew.style}}</b> alc: <b>{{brew.alc}}</b> blg: <b>{{brew.blg}}</b></div>
+        </div>
+      </div>
+      <button *ngIf="loggedIn=='true'" class="delete" title="delete brew"
+        (click)="delete(brew)">X</button>
+    </li>
+  </ul>
+  </div>
+  <div *ngIf="selectedBrew==undefined"class="brew-details-placeholder col-md-8 col-lg-8">
+    <h2>Wybierz warkę aby wyświetlić szczegóły</h2>
+    <h2><--</h2>
+  </div>
+  <div *ngIf="selectedBrew" class="brew-details col-md-4 col-lg-4">
+    <h2>Szczegóły warki #{{selectedBrew.number}}</h2>
+    <div><span>id: </span>{{selectedBrew.id}} | <span>data utworzenia: </span>{{selectedBrew.creation_date}}</div>
+
+    <div class="inputs">
+      <label>numer:
+        <input [(ngModel)]="selectedBrew.number" [disabled]="loggedIn!='true'" placeholder="number"/>
+      </label>
+      <label>nazwa:
+        <input [(ngModel)]="selectedBrew.name" [disabled]="loggedIn!='true'" placeholder="name"/>
+      </label>
+      <label>numer:
+        <input [(ngModel)]="selectedBrew.number" [disabled]="loggedIn!='true'" placeholder="number"/>
+      </label>
+      <label>styl:
+        <input [(ngModel)]="selectedBrew.style" [disabled]="loggedIn!='true'" placeholder="styl"/>
+      </label>
+      <label>alc:
+        <input [(ngModel)]="selectedBrew.alc" [disabled]="loggedIn!='true'" placeholder="alc"/>
+      </label>
+      <label>blg:
+        <input [(ngModel)]="selectedBrew.blg" [disabled]="loggedIn!='true'" placeholder="blg"/>
+      </label>
+      <label>data warzenia:
+        <input [(ngModel)]="selectedBrew.brew_date" [disabled]="loggedIn!='true'" placeholder="data warzenia"/>
+      </label>
+      <label>data rozlewu:
+        <input [(ngModel)]="selectedBrew.bottling_date" [disabled]="loggedIn!='true'" placeholder="data rozlewu"/>
+      </label>
+      <label>etykieta:
+        <img src="{{selectedBrew.label}}" alt="">
+        <input type="file" accept="image/*" [disabled]="loggedIn!='true'" (change)="changeListener($event)">
+      </label>
+    </div>
+    <button *ngIf="loggedIn=='true'" class="save" (click)="save()"><i class="fas fa-save"></i></button>
+  </div>
+  <app-brew-recipe *ngIf="selectedBrew" [brew]="selectedBrew" class="col-md-4 col-lg-4"></app-brew-recipe>
+
+  <div *ngIf="loggedIn=='true'" class="add-brew col-md-4 col-lg-4">
+    <li>
+      <div class="brew">
+        <span class="badge">#</span> 
+        <div class="info">
+        <label class="name">
+          <input #brewName placeholder="nazwa"/>
+        </label>
+          <div class="details">styl: <b>...</b> alc: <b>...</b> blg: <b>...</b></div>
+        </div>
+      </div>
+      <button class="add" (click)="add(brewName.value); brewName.value=''">+</button>
+    </li>
+  </div>
+
+</div>
+
