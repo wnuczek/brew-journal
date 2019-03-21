@@ -2,11 +2,12 @@
 	max-width: 100%; 
 	object-fit: contain;
 	object-position: center;
-	border-radius: 5px;
+	border-radius: 5px 5px 0 0px;
 }
 
 a {
 	display: block;
+	transition: .2s ease;
 }
 
 .last-brews {
@@ -15,6 +16,15 @@ a {
 	flex-wrap: wrap;
 	justify-content: flex-start;
 	align-items: center;
+}
+
+.last-brews a {
+	margin-bottom: 1rem;
+}
+
+.last-brews .brew {
+		border-radius: 5px;
+	background: grey;
 }
 
 .center {

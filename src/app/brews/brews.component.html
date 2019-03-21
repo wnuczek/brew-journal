@@ -47,10 +47,10 @@
         <input [(ngModel)]="selectedBrew.blg" [disabled]="loggedIn!='true'" placeholder="blg"/>
       </label>
       <label>data warzenia:
-        <input [(ngModel)]="selectedBrew.brew_date" [disabled]="loggedIn!='true'" placeholder="data warzenia"/>
+        <input [(ngModel)]="selectedBrew.brew_date" [textMask]="{mask: mask}" [disabled]="loggedIn!='true'" placeholder="data warzenia"/>
       </label>
       <label>data rozlewu:
-        <input [(ngModel)]="selectedBrew.bottling_date" [disabled]="loggedIn!='true'" placeholder="data rozlewu"/>
+        <input [(ngModel)]="selectedBrew.bottling_date" [textMask]="{mask: mask}" [disabled]="loggedIn!='true'" placeholder="data rozlewu"/>
       </label>
       <label>etykieta:
         <img src="{{selectedBrew.label}}" alt="">

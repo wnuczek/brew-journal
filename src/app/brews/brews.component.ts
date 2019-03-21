@@ -7,6 +7,8 @@ import { BrewService } from '../brew.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
+import { TextMaskModule } from 'angular2-text-mask';
+
 
 @Component({
   selector: 'app-brews',
@@ -25,6 +27,7 @@ export class BrewsComponent implements OnInit {
 
   image;
 
+  public mask = [/\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/, ' ', /\d/, /\d/, ':', /\d/, /\d/, ':', /\d/, /\d/,];
 
 
   constructor(private brewService: BrewService, private location: Location, private route: ActivatedRoute) { }

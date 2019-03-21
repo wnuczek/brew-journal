@@ -13,6 +13,8 @@ import { BrewSearchComponent } from './brew-search/brew-search.component';
 import { LoginComponent } from './login/login.component';
 import { BrewRecipeComponent } from './brew-recipe/brew-recipe.component';
 
+import { TextMaskModule } from 'angular2-text-mask';
+
 
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import { MatDatepickerModule } from '@angular/material';
@@ -38,7 +40,8 @@ import { BrewRecipeComponent } from './brew-recipe/brew-recipe.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TextMaskModule
     //BrowserAnimationsModule,
     //MatButtonModule, 
     //MatCheckboxModule

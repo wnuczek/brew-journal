@@ -5,8 +5,8 @@
   <a *ngFor="let brew of brews | slice:0:6" class="col-md-3"
       routerLink="/brews/{{brew.id}}">
     <div class="module brew">
-      <h4>{{brew.name}}</h4>
       <img src="{{brew.label}}"/>
+      <h4>{{brew.name}}</h4>
     </div>
   </a>
 </div>
