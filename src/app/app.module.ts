@@ -14,6 +14,8 @@ import { LoginComponent } from './login/login.component';
 import { BrewRecipeComponent } from './brew-recipe/brew-recipe.component';
 
 import { TextMaskModule } from 'angular2-text-mask';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -41,7 +43,8 @@ import { TextMaskModule } from 'angular2-text-mask';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    TextMaskModule
+    TextMaskModule,
+    NgbModule
     //BrowserAnimationsModule,
     //MatButtonModule, 
     //MatCheckboxModule

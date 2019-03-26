@@ -110,6 +110,11 @@ input {
 	text-decoration: underline;
 }
 
+.brew-details label.disabled:focus, .brew-details label.disabled:active, .brew-details label.disabled:focus-within {
+	color: inherit;
+	text-decoration: none;
+}
+
 .brew-details label {
 	width: 100%;
 	display: flex;

@@ -8,6 +8,8 @@ import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
 import { TextMaskModule } from 'angular2-text-mask';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 
 @Component({
@@ -40,6 +42,12 @@ export class BrewsComponent implements OnInit {
     if(id){
       this.getBrew();
     }
+  }
+
+  collapsed = true;
+  toggleCollapsed(): void {
+    console.log("collapse toggled");
+    this.collapsed = !this.collapsed;
   }
 
   onSelect(brew: Brew): void {

@@ -28,36 +28,36 @@
     <div><span>id: </span>{{selectedBrew.id}} | <span>data utworzenia: </span>{{selectedBrew.creation_date}}</div>
 
     <div class="inputs">
-      <label>numer:
+      <label [class.disabled]="loggedIn!='true'">numer:
         <input [(ngModel)]="selectedBrew.number" [disabled]="loggedIn!='true'" placeholder="number"/>
       </label>
-      <label>nazwa:
+      <label [class.disabled]="loggedIn!='true'">nazwa:
         <input [(ngModel)]="selectedBrew.name" [disabled]="loggedIn!='true'" placeholder="name"/>
       </label>
-      <label>numer:
-        <input [(ngModel)]="selectedBrew.number" [disabled]="loggedIn!='true'" placeholder="number"/>
-      </label>
-      <label>styl:
+      <label [class.disabled]="loggedIn!='true'">styl:
         <input [(ngModel)]="selectedBrew.style" [disabled]="loggedIn!='true'" placeholder="styl"/>
       </label>
-      <label>alc:
+      <label [class.disabled]="loggedIn!='true'">alc:
         <input [(ngModel)]="selectedBrew.alc" [disabled]="loggedIn!='true'" placeholder="alc"/>
       </label>
-      <label>blg:
+      <label [class.disabled]="loggedIn!='true'">blg:
         <input [(ngModel)]="selectedBrew.blg" [disabled]="loggedIn!='true'" placeholder="blg"/>
       </label>
-      <label>data warzenia:
+      <label [class.disabled]="loggedIn!='true'">data warzenia:
         <input [(ngModel)]="selectedBrew.brew_date" [textMask]="{mask: mask}" [disabled]="loggedIn!='true'" placeholder="data warzenia"/>
       </label>
-      <label>data rozlewu:
-        <input [(ngModel)]="selectedBrew.bottling_date" [textMask]="{mask: mask}" [disabled]="loggedIn!='true'" placeholder="data rozlewu"/>
+      <label [class.disabled]="loggedIn!='true'">data rozlewu:
+        <input [(ngModel)]="selectedBrew.bottling_date" [textMask]="{mask: mask}" [disabled]="loggedIn!='true'" placeholder="data rozlewu" /><br>
+
       </label>
-      <label>etykieta:
+
+      <label [class.disabled]="loggedIn!='true'">etykieta:
         <img src="{{selectedBrew.label}}" alt="">
         <input type="file" accept="image/*" [disabled]="loggedIn!='true'" (change)="changeListener($event)">
       </label>
     </div>
     <button *ngIf="loggedIn=='true'" class="save" (click)="save()"><i class="fas fa-save"></i></button>
+
   </div>
   <app-brew-recipe *ngIf="selectedBrew" [brew]="selectedBrew" class="col-md-4 col-lg-4"></app-brew-recipe>
 
