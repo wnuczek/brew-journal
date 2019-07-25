@@ -54,11 +54,11 @@ export class BrewRecipeComponent implements OnInit {
 
   add(name: string, quantity: number, unit: string, brew_id: number): void {
     var ingredient;
-    console.log('ingredient = '+name);
-    ingredient['name']=name;
-    ingredient['quantity']=quantity;
-    ingredient['unit']=unit;
-    this.brewService.addIngredient(ingredient as Ingredient, brew_id)
+    //console.log('ingredient = '+name);
+    //ingredient['name']=name;
+    //ingredient['quantity']=quantity;
+    //ingredient['unit']=unit;
+    this.brewService.addIngredient({name, quantity, unit} as Ingredient, brew_id)
       .subscribe(
         ingredient => {this.getIngredients(brew_id);}
       );

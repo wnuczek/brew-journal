@@ -27,7 +27,7 @@ export class BrewDetailComponent implements OnInit {
   getBrew(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.brewService.getBrew(id)
-      .subscribe(brew => {this.brew = brew; console.log(brew);});
+      .subscribe(brew => {this.brew = brew});
   }
  
   goBack(): void {

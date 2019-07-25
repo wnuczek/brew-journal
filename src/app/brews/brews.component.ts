@@ -36,7 +36,7 @@ export class BrewsComponent implements OnInit {
 
   ngOnInit() {
     this.loggedIn=localStorage.getItem('loggedIn');
-    console.log('logged in = ' + this.loggedIn);
+    //console.log('logged in = ' + this.loggedIn);
     this.getBrews();
     const id = +this.route.snapshot.paramMap.get('id');
     if(id){
@@ -46,7 +46,7 @@ export class BrewsComponent implements OnInit {
 
   collapsed = true;
   toggleCollapsed(): void {
-    console.log("collapse toggled");
+    //console.log("collapse toggled");
     this.collapsed = !this.collapsed;
   }
 
@@ -61,7 +61,7 @@ export class BrewsComponent implements OnInit {
   getBrew(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.brewService.getBrew(id)
-      .subscribe(selectedBrew => {this.brew = selectedBrew; console.log(selectedBrew); this.selectedBrew=selectedBrew});
+      .subscribe(selectedBrew => {this.brew = selectedBrew; this.selectedBrew=selectedBrew});
   }
 
   add(name: string): void {
@@ -100,7 +100,7 @@ export class BrewsComponent implements OnInit {
     myReader.onloadend = (e) => {
       this.image = myReader.result;
           this.selectedBrew.label=this.image;
-    console.log('label = '+ this.image);
+    //console.log('label = '+ this.image);
     }
     myReader.readAsDataURL(file);
   }

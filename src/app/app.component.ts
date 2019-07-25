@@ -17,19 +17,17 @@ export class AppComponent {
 
   loggedIn=localStorage.getItem('loggedIn');
 
-logout(): void {
-	localStorage.removeItem('loggedIn');
-	window.location.reload();
+  logout(): void {
+  	localStorage.removeItem('loggedIn');
+  	window.location.reload();
+  }
 
-}
+  ngOnInit(){
+    this.loggedIn=localStorage.getItem('loggedIn');
+  }
 
-ngOnInit(){
-  this.loggedIn=localStorage.getItem('loggedIn');
-}
-
-ngOnChanges(){
-  this.loggedIn=localStorage.getItem('loggedIn');
-}
-
+  ngOnChanges(){
+    this.loggedIn=localStorage.getItem('loggedIn');
+  }
 
 }
