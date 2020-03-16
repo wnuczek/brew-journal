@@ -1,4 +1,4 @@
-# Dziennik piwowara
+# Brew journal
 
 ## What is it?
 
