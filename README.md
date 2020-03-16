@@ -8,4 +8,4 @@ This is my first Angular app. It aggregates data about beers that I brewed. The 
 Plans for further development can be found in TODO.md 
 
 ## Try it
-Current working version of this app is available [here](https://pawelwnuk.pl/brew).
+Current working version of this app is available [here](https://brew.pawelwnuk.pl).
