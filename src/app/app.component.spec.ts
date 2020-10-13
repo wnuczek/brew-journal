@@ -30,10 +30,8 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-<<<<<<< HEAD
+
     expect(compiled.querySelector('h1').textContent).toContain('Dziennik');
-=======
-    expect(compiled.querySelector('h1').textContent).toContain('dziennik');
->>>>>>> d98e428af77128db2d2c36e8218e301d03f0e6c4
+
   });
 });
