@@ -29,9 +29,11 @@ export class BrewRecipeComponent implements OnInit {
   constructor(private brewService: BrewService) { }
 
   ngOnInit() {
-  	//console.log('var brew = '+this.brew.id);
-  	this.getIngredients(this.brew.id);
-    this.loggedIn=localStorage.getItem('loggedIn');
+    //console.log('var brew = '+this.brew.id);
+    if(this.brew) {
+      this.getIngredients(this.brew.id);
+      this.loggedIn=localStorage.getItem('loggedIn');
+    }
   }
 
   ngOnChanges() {

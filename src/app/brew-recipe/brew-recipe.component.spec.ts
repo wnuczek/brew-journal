@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BrewRecipeComponent } from './brew-recipe.component';
+import { HttpClientTestingModule }    from '@angular/common/http/testing';
 
 describe('BrewRecipeComponent', () => {
   let component: BrewRecipeComponent;
@@ -8,7 +9,8 @@ describe('BrewRecipeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BrewRecipeComponent ]
+      declarations: [ BrewRecipeComponent ],
+      imports: [ HttpClientTestingModule ]
     })
     .compileComponents();
   }));
