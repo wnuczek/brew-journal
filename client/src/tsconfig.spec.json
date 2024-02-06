@@ -4,12 +4,12 @@
     "outDir": "../out-tsc/spec",
     "types": [
       "jasmine",
-      "node"
+      "node",
+      "@angular/localize"
     ]
   },
   "files": [
     "test.ts",
-    "polyfills.ts"
   ],
   "include": [
     "**/*.spec.ts",
