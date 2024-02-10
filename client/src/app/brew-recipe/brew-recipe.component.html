@@ -1,42 +1,85 @@
-  <div *ngIf="brew">
-  <h2>Składniki warki #{{brew.number}}</h2>
-  <div *ngIf="ingredients">Ilość składników: {{ingredients.length}}</div>
+<div *ngIf="brew">
+  <h2>Składniki warki #{{ brew.number }}</h2>
+  <div *ngIf="ingredients">Ilość składników: {{ ingredients.length }}</div>
   <ul *ngIf="ingredients" class="ingredients">
     <li *ngFor="let ingredient of ingredients" class="row">
-      <label class="col-sm-6">nazwa:
-        <input [(ngModel)]="ingredient.name" placeholder="nazwa" [attr.disabled]="loggedIn!=true"/>
+      <label class="col-sm-6"
+        >nazwa:
+        <input
+          [(ngModel)]="ingredient.name"
+          placeholder="nazwa"
+          [attr.disabled]="loggedIn != true"
+        />
       </label>
-      <label class="col-sm-2">ilość:
-        <input [(ngModel)]="ingredient.quantity" placeholder="ilość" [attr.disabled]="loggedIn!=true"/>
+      <label class="col-sm-2"
+        >ilość:
+        <input
+          [(ngModel)]="ingredient.quantity"
+          placeholder="ilość"
+          [attr.disabled]="loggedIn != true"
+        />
       </label>
-      <label class="col-sm-2">jedn:
-        <input [(ngModel)]="ingredient.unit" placeholder="jedn." [attr.disabled]="loggedIn!=true"/>
+      <label class="col-sm-2"
+        >jedn:
+        <input
+          [(ngModel)]="ingredient.unit"
+          placeholder="jedn."
+          [attr.disabled]="loggedIn != true"
+        />
       </label>
-      <button *ngIf="loggedIn=='true'" class="delete" title="delete ingredient"
-        (click)="delete(ingredient)">X</button>
+      <button
+        *ngIf="loggedIn == 'true'"
+        class="delete"
+        title="delete ingredient"
+        (click)="delete(ingredient)"
+      >
+        X
+      </button>
     </li>
-    <button *ngIf="ingredients.length!=0 && loggedIn=='true'" class="save" (click)="save(ingredient)"><i class="fas fa-save"></i></button>
+    <button
+      *ngIf="ingredients.length != 0 && loggedIn == 'true'"
+      class="save"
+      (click)="save(ingredient)"
+    >
+      <i class="fas fa-save"></i>
+    </button>
   </ul>
-  <div *ngIf="loggedIn=='true'" class="add-ingredient">
-
+  <div *ngIf="loggedIn == 'true'" class="add-ingredient">
     <li class="row">
-      <label class="col-sm-6">nazwa:
-        <input #ingredientName placeholder="nazwa"/>
+      <label class="col-sm-6"
+        >nazwa:
+        <input #ingredientName placeholder="nazwa" />
       </label>
-      <label class="col-sm-3">ilość:
-        <input #ingredientQuantity placeholder="ilość"/>
+      <label class="col-sm-3"
+        >ilość:
+        <input #ingredientQuantity placeholder="ilość" />
       </label>
-      <label class="col-sm-2">jedn:
-        <input #ingredientUnit placeholder="jedn."/>
+      <label class="col-sm-2"
+        >jedn:
+        <input #ingredientUnit placeholder="jedn." />
       </label>
-      <button class="add" (click)="add(ingredientName.value, ingredientQuantity.value, ingredientUnit.value, brew.id); ingredientName.value=''; ingredientQuantity.value=''; ingredientUnit.value=''">+</button>
-
+      <button
+        class="add"
+        (click)="
+          add(
+            ingredientName.value,
+            ingredientQuantity.value,
+            ingredientUnit.value,
+            brew.id
+          );
+          ingredientName.value = '';
+          ingredientQuantity.value = '';
+          ingredientUnit.value = ''
+        "
+      >
+        +
+      </button>
     </li>
-  
-  <!--<label>Nowy składnik:
+
+    <!--<label>Nowy składnik:
     <input #ingredientName />
   </label>-->
-  <!-- (click) passes input value to add() and then clears the input -->
-  <!--<button class="add" (click)="add(ingredientName.value, brew.id); ingredientName.value=''">+</button>-->
-</div>
+    <!-- (click) passes input value to add() and then clears the input -->
+    <!--<button class="add" (click)="add(ingredientName.value, brew.id); ingredientName.value=''">+</button>-->
   </div>
+</div>

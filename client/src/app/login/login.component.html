@@ -1,18 +1,24 @@
 <form class="row" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-<label>Login:
-	<input type="text" formControlName="login"/>
-</label>
-        <div *ngIf="submitted && loginForm.controls.login.errors" class="error">
-          <div *ngIf="loginForm.controls.login.errors.required">To pole jest wymagane</div>
-        </div>
-<label>Hasło:
-	<input type="password" formControlName="password"/>
-</label>
-        <div *ngIf="submitted && loginForm.controls.password.errors" class="error">
-          <div *ngIf="loginForm.controls.password.errors.required">To pole jest wymagane</div>
-        </div>
-<input type="submit" value="Zaloguj"/>
-      <div *ngIf="invalidLogin" class="error">
-        <div>Dane logowania nieprawidłowe</div>
-      </div>
+  <label
+    >Login:
+    <input type="text" formControlName="login" />
+  </label>
+  <div *ngIf="submitted && loginForm.controls.login.errors" class="error">
+    <div *ngIf="loginForm.controls.login.errors.required">
+      To pole jest wymagane
+    </div>
+  </div>
+  <label
+    >Hasło:
+    <input type="password" formControlName="password" />
+  </label>
+  <div *ngIf="submitted && loginForm.controls.password.errors" class="error">
+    <div *ngIf="loginForm.controls.password.errors.required">
+      To pole jest wymagane
+    </div>
+  </div>
+  <input type="submit" value="Zaloguj" />
+  <div *ngIf="invalidLogin" class="error">
+    <div>Dane logowania nieprawidłowe</div>
+  </div>
 </form>

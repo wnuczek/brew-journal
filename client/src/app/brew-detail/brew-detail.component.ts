@@ -1,42 +1,40 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
- 
-import { Brew }         from '../brew';
-import { BrewService }  from '../brew.service';
+import { Component, OnInit, Input } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { Location } from "@angular/common";
+
+import { Brew } from "../brew";
+import { BrewService } from "../brew.service";
 
 @Component({
-  selector: 'app-brew-detail',
-  templateUrl: './brew-detail.component.html',
-  styleUrls: ['./brew-detail.component.css']
+	selector: "app-brew-detail",
+	templateUrl: "./brew-detail.component.html",
+	styleUrls: ["./brew-detail.component.css"],
 })
 export class BrewDetailComponent implements OnInit {
+	@Input() brew: Brew;
 
-  @Input() brew: Brew;
+	constructor(
+		private route: ActivatedRoute,
+		private brewService: BrewService,
+		private location: Location,
+	) {}
 
-  constructor(
-  	private route: ActivatedRoute,
-    private brewService: BrewService,
-    private location: Location
-    ) { }
+	ngOnInit() {
+		this.getBrew();
+	}
 
-  ngOnInit() {
-  	this.getBrew();
-  }
+	getBrew(): void {
+		const id = +this.route.snapshot.paramMap.get("id");
+		this.brewService.getBrew(id).subscribe((brew) => {
+			this.brew = brew;
+		});
+	}
 
-  getBrew(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.brewService.getBrew(id)
-      .subscribe(brew => {this.brew = brew});
-  }
- 
-  goBack(): void {
-    this.location.back();
-  }
- 
- save(): void {
-    this.brewService.updateBrew(this.brew)
-      .subscribe(() => this.goBack());
-  }
+	goBack(): void {
+		this.location.back();
+	}
 
+	save(): void {
+		this.brewService.updateBrew(this.brew).subscribe(() => this.goBack());
+	}
 }

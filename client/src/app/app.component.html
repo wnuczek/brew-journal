@@ -1,16 +1,16 @@
 <div class="upper">
-<header class="banner">
-	<h1>{{title}}</h1>
-</header>
-<nav>
-  <a routerLink="/dashboard">Główna</a>
-  <a routerLink="/brews">Lista</a>
-  <a *ngIf="loggedIn!='true'"  routerLink="/login">Zaloguj</a>
-  <a *ngIf="loggedIn=='true'"  routerLink="/" (click)="logout()">Wyloguj</a>
-</nav>
+  <header class="banner">
+    <h1>{{ title }}</h1>
+  </header>
+  <nav>
+    <a routerLink="/dashboard">Główna</a>
+    <a routerLink="/brews">Lista</a>
+    <a *ngIf="loggedIn != 'true'" routerLink="/login">Zaloguj</a>
+    <a *ngIf="loggedIn == 'true'" routerLink="/" (click)="logout()">Wyloguj</a>
+  </nav>
 </div>
 <router-outlet></router-outlet>
 <!--<app-messages class="d-none d-md-block"></app-messages>-->
 <footer class="banner">
-	<h6>Brew journal written in Angular &copy; Paweł Wnuk 2019</h6>
+  <h6>Brew journal written in Angular &copy; Paweł Wnuk 2024</h6>
 </footer>

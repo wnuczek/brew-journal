@@ -14,38 +14,29 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { LoginComponent } from "./login/login.component";
 import { MessagesComponent } from "./messages/messages.component";
 
-//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import { MatDatepickerModule } from '@angular/material';
-
-//import {MatButtonModule, MatCheckboxModule} from '@angular/material';
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    BrewsComponent,
-    BrewDetailComponent,
-    MessagesComponent,
-    DashboardComponent,
-    BrewSearchComponent,
-    LoginComponent,
-    BrewRecipeComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    NgbModule,
-    //BrowserAnimationsModule,
-    //MatButtonModule,
-    //MatCheckboxModule
-    //MatDatepickerModule
-  ],
-  providers: [
-    { provide: LocationStrategy, useClass: PathLocationStrategy },
-    AppComponent,
-  ],
-  bootstrap: [AppComponent],
+	declarations: [
+		AppComponent,
+		BrewsComponent,
+		BrewDetailComponent,
+		MessagesComponent,
+		DashboardComponent,
+		BrewSearchComponent,
+		LoginComponent,
+		BrewRecipeComponent,
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		FormsModule,
+		HttpClientModule,
+		ReactiveFormsModule,
+		NgbModule,
+	],
+	providers: [
+		{ provide: LocationStrategy, useClass: PathLocationStrategy },
+		AppComponent,
+	],
+	bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -4,11 +4,11 @@ header.banner {
 }
 
 app-messages {
-		display: none!important;
-	}
+	display: none !important;
+}
 
 @media screen and (min-device-aspect-ratio: 1/1) {
 	app-messages {
-		display: block!important;
+		display: block !important;
 	}
 }

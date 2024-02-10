@@ -1,9 +1,10 @@
-ul.brews{
+ul.brews {
 	list-style: none;
 	padding: 0;
 }
 
-ul.brews li, .add-brew li{
+ul.brews li,
+.add-brew li {
 	margin-bottom: .5rem;
 	background: lightgrey;
 	border-radius: 5px 5px 5px 5px;
@@ -19,7 +20,8 @@ ul.brews li.selected .badge {
 	color: #920918;
 }
 
-ul.brews .brew, .add-brew .brew {
+ul.brews .brew,
+.add-brew .brew {
 	display: flex;
 	flex-flow: row;
 	justify-content: flex-start;
@@ -37,7 +39,8 @@ ul.brews .brew:hover {
 }
 
 
-ul.brews .badge, .add-brew .badge {
+ul.brews .badge,
+.add-brew .badge {
 	background: grey;
 	border-radius: 5px 0px 0px 5px;
 	padding: 5px 10px;
@@ -47,25 +50,29 @@ ul.brews .badge, .add-brew .badge {
 	transition: .5s ease;
 }
 
-ul.brews .brew .info, .add-brew .brew .info {
+ul.brews .brew .info,
+.add-brew .brew .info {
 	padding-left: 0.5rem;
 	color: #920918;
 	transition: .2s ease;
 }
 
-ul.brews .brew .name, .add-brew .brew .name {
+ul.brews .brew .name,
+.add-brew .brew .name {
 	font-size: 1.4rem;
 }
 
-ul.brews .brew .details, .add-brew .brew .details {
+ul.brews .brew .details,
+.add-brew .brew .details {
 	font-size: 0.8rem;
 }
 
-ul.brews button.delete, .add-brew button.add {
+ul.brews button.delete,
+.add-brew button.add {
 	background: grey;
 	border-radius: 0px 5px 5px 0;
 	padding: 5px 10px;
-	border:none;
+	border: none;
 	font-size: 2.2rem;
 	line-height: 43px;
 }
@@ -79,7 +86,7 @@ button {
 	margin: 0;
 }
 
-.inputs{
+.inputs {
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
@@ -105,12 +112,16 @@ input {
 	text-align: left;
 }
 
-.brew-details label:focus, .brew-details label:active, .brew-details label:focus-within {
+.brew-details label:focus,
+.brew-details label:active,
+.brew-details label:focus-within {
 	color: #920918;
 	text-decoration: underline;
 }
 
-.brew-details label.disabled:focus, .brew-details label.disabled:active, .brew-details label.disabled:focus-within {
+.brew-details label.disabled:focus,
+.brew-details label.disabled:active,
+.brew-details label.disabled:focus-within {
 	color: inherit;
 	text-decoration: none;
 }

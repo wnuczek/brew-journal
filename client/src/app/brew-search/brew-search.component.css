@@ -1,4 +1,4 @@
-ul.search-result{
+ul.search-result {
 	list-style: none;
 }
 
@@ -24,11 +24,11 @@ ul.search-result button.delete {
 	background: grey;
 	border-radius: 0px 5px 5px 0;
 	padding: 5px 10px;
-	border:none;
+	border: none;
 	font-size: 1rem;
 }
 
-ul.brews{
+ul.brews {
 	list-style: none;
 	padding: 0;
 }
@@ -89,7 +89,7 @@ ul.brews button.delete {
 	background: grey;
 	border-radius: 0px 5px 5px 0;
 	padding: 5px 10px;
-	border:none;
+	border: none;
 	font-size: 2.2rem;
 	line-height: 43px;
 }
