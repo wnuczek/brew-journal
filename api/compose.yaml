@@ -1,11 +1,10 @@
 name: "brew-journal-db"
 services:
-  mysql:
-    image: 'mysql:latest'
+  postgres:
+    image: 'postgres:15'
     environment:
-      - 'MYSQL_DATABASE=${DB_NAME}'
-      - 'MYSQL_PASSWORD=${DB_PASS}'
-      - 'MYSQL_ROOT_PASSWORD=${DB_ROOT_PASS}'
-      - 'MYSQL_USER=${DB_USER}'
+      - 'POSTGRES_DB=${DB_NAME}'
+      - 'POSTGRES_PASSWORD=${DB_PASS}'
+      - 'POSTGRES_USER=${DB_USER}'
     ports:
-      - '3306:3306'
+      - '5432:5432'

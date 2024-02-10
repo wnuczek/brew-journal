@@ -1,6 +1,7 @@
 package pl.pawelwnuk.brewjournalapi.user;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -13,13 +14,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import pl.pawelwnuk.brewjournalapi.brew.Brew;
 
 @Getter
 @Setter
-@Table
+@Table(name="users")
 @Entity
 public class User {
 
@@ -47,6 +50,9 @@ public class User {
  
 	@Lob
 	private byte[] avatar;
+
+	@OneToMany(mappedBy = "user")
+	private List<Brew> brews;
 
 	protected User() {}
 

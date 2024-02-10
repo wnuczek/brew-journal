@@ -31,8 +31,8 @@ public class BrewJournalApiApplication {
 	public CommandLineRunner demo(BrewRepository brewRepository, UserRepository userRepository) {
 		return (args) -> {
 			// save a few brews
-			brewRepository.save(new Brew("name", "style", 50, 120));
-			userRepository.save(new User("Pawel", "Wnuk", "mail@pawelwnuk.pl"));
+			// brewRepository.save(new Brew("name", "style",1, 50, 120));
+			// userRepository.save(new User("Pawel", "Wnuk", "mail@pawelwnuk.pl"));
 			// repository.save(new Brew("Chloe", "O'Brian"));
 			// repository.save(new Brew("Kim", "Bauer"));
 			// repository.save(new Brew("David", "Palmer"));
