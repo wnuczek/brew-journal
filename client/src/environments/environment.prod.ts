@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
-  apiUrl: "http://localhost:8080",
+	production: true,
+	apiUrl: "https://brew-journal-api-dot-wnuczek-testing.ew.r.appspot.com",
 };
