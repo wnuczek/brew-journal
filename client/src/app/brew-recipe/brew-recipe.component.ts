@@ -1,10 +1,6 @@
-import { Component, OnInit, Input } from "@angular/core";
-
-import { Brew } from "../brew";
-import { Ingredient } from "../ingredient";
-
+import { Component, Input, OnInit } from "@angular/core";
 import { BrewService } from "../brew.service";
-import { Location } from "@angular/common";
+import { Brew, Ingredient } from "../store/model";
 
 @Component({
 	selector: "app-brew-recipe",
@@ -12,12 +8,10 @@ import { Location } from "@angular/common";
 	styleUrls: ["./brew-recipe.component.css"],
 })
 export class BrewRecipeComponent implements OnInit {
-	ingredients: Ingredient[];
-
 	@Input() ingredient: Ingredient;
 	@Input() brew: Brew;
 
-	loggedIn: string = "false";
+	loggedIn = false;
 
 	//@Input() newIngredient: Ingredient;
 
@@ -28,15 +22,8 @@ export class BrewRecipeComponent implements OnInit {
 	ngOnInit() {
 		//console.log('var brew = '+this.brew.id);
 		if (this.brew) {
-			this.getIngredients(this.brew.id);
-			this.loggedIn = localStorage.getItem("loggedIn");
+			this.loggedIn = localStorage.getItem("loggedIn") === "true";
 		}
-	}
-
-	ngOnChanges() {
-		//console.log('var brew = '+this.brew.id);
-		//console.log('ingredient = '+this.ingredient);
-		this.getIngredients(this.brew.id);
 	}
 
 	onSelect(ingredient: Ingredient): void {
@@ -44,33 +31,20 @@ export class BrewRecipeComponent implements OnInit {
 		//console.log('ingredient = '+this.ingredient);
 	}
 
-	getIngredients(brewid: number): void {
-		//console.log('brewid = '+brewid);
-		this.brewService.getIngredients(brewid).subscribe((ingredients) => {
-			this.ingredients = ingredients;
-		});
-	}
-
 	add(name: string, quantity: number, unit: string, brew_id: number): void {
-		var ingredient;
-		//console.log('ingredient = '+name);
-		//ingredient['name']=name;
-		//ingredient['quantity']=quantity;
-		//ingredient['unit']=unit;
-		this.brewService
-			.addIngredient({ name, quantity, unit } as Ingredient, brew_id)
-			.subscribe((ingredient) => {
-				this.getIngredients(brew_id);
-			});
+		// this.brewService.addIngredient(
+		// 	{ name, quantity, unit } as Ingredient,
+		// 	brew_id,
+		// );
 	}
 
 	delete(ingredient: Ingredient): void {
-		this.ingredients = this.ingredients.filter((h) => h !== ingredient);
-		this.brewService.deleteIngredient(ingredient).subscribe();
+		// this.ingredients = this.ingredients.filter((h) => h !== ingredient);
+		// this.brewService.deleteIngredient(ingredient).subscribe();
 	}
 
 	update(ingredient: Ingredient) {
-		this.brewService.updateIngredient(this.ingredient).subscribe();
+		// this.brewService.updateIngredient(this.ingredient).subscribe();
 	}
 
 	save() {

@@ -1,9 +1,8 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
-
-import { Brew } from "../brew";
+import { Component, Input, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { BrewService } from "../brew.service";
+import { Brew } from "../store/model";
 
 @Component({
 	selector: "app-brew-detail",

@@ -5,8 +5,11 @@
   <nav>
     <a routerLink="/dashboard">Główna</a>
     <a routerLink="/brews">Lista</a>
-    <a *ngIf="loggedIn != 'true'" routerLink="/login">Zaloguj</a>
-    <a *ngIf="loggedIn == 'true'" routerLink="/" (click)="logout()">Wyloguj</a>
+    @if (loggedIn) {
+    <a routerLink="/" (click)="logout()">Wyloguj</a>
+    } @else {
+    <a routerLink="/login">Zaloguj</a>
+    }
   </nav>
 </div>
 <router-outlet></router-outlet>

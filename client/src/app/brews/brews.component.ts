@@ -1,8 +1,12 @@
 import { Location } from "@angular/common";
 import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { Brew } from "../brew";
+import { Store } from "@ngrx/store";
+import { Observable } from "rxjs";
 import { BrewService } from "../brew.service";
+import { BrewActions } from "../store/actions";
+import { AppState, Brew } from "../store/model";
+import { selectAllBrews } from "../store/selectors";
 
 @Component({
 	selector: "app-brews",
@@ -10,13 +14,15 @@ import { BrewService } from "../brew.service";
 	styleUrls: ["./brews.component.css"],
 })
 export class BrewsComponent implements OnInit {
-	brews: Brew[];
+	brews$: Observable<Brew[]> | undefined;
 
 	@Input() brew: Brew;
 
 	selectedBrew: Brew;
 
-	loggedIn: string = "false";
+	loggedIn = "false";
+
+	id: number;
 
 	image;
 
@@ -43,6 +49,7 @@ export class BrewsComponent implements OnInit {
 	];
 
 	constructor(
+		private store: Store<AppState>,
 		private brewService: BrewService,
 		private location: Location,
 		private route: ActivatedRoute,
@@ -51,7 +58,9 @@ export class BrewsComponent implements OnInit {
 	ngOnInit() {
 		this.loggedIn = localStorage.getItem("loggedIn");
 		//console.log('logged in = ' + this.loggedIn);
-		this.getBrews();
+		this.store.dispatch(BrewActions.loadBrews());
+		this.brews$ = this.store.select(selectAllBrews);
+
 		const id = +this.route.snapshot.paramMap.get("id");
 		if (id) {
 			this.getBrew();
@@ -66,12 +75,6 @@ export class BrewsComponent implements OnInit {
 
 	onSelect(brew: Brew): void {
 		this.selectedBrew = brew;
-	}
-
-	getBrews(): void {
-		this.brewService.getBrews().subscribe((brews) => {
-			this.brews = brews;
-		});
 	}
 
 	getBrew(): void {
@@ -89,13 +92,13 @@ export class BrewsComponent implements OnInit {
 			return;
 		}
 		this.brewService.addBrew({ name } as Brew).subscribe((brew) => {
-			this.getBrews();
+			// this.getBrews();
 			this.selectedBrew = this.brew;
 		});
 	}
 
 	delete(brew: Brew): void {
-		this.brews = this.brews.filter((h) => h !== brew);
+		// this.brews = this.brews.filter((h) => h !== brew);
 		this.brewService.deleteBrew(brew).subscribe();
 	}
 
@@ -112,8 +115,8 @@ export class BrewsComponent implements OnInit {
 	}
 
 	readThis(inputValue: any): void {
-		var file: File = inputValue.files[0];
-		var myReader: FileReader = new FileReader();
+		const file: File = inputValue.files[0];
+		const myReader: FileReader = new FileReader();
 
 		myReader.onloadend = (e) => {
 			this.image = myReader.result;

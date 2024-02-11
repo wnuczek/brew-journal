@@ -2,15 +2,19 @@
   <div class="center col-sm-9">
     <h2>Ostatnie warki</h2>
     <div class="last-brews">
-      <a
-        *ngFor="let brew of brews | slice : 0 : 6"
-        class="col-md-3"
-        routerLink="/brews/{{ brew.id }}"
-      >
+      @for (brew of brews$ | async | slice : 0 : 6; track brew) {
+      <a class="col-md-3" routerLink="/brews/{{ brew.id }}">
         <div class="module brew">
+          @if (brew.label){
           <img src="{{ brew.label }}" />
+          } @else {
+          <img [src]="'https://placehold.co/300x400?text=' + brew.name" />
+          }
         </div>
       </a>
+      } @empty {
+      <h3>No brews found</h3>
+      }
     </div>
   </div>
 </div>

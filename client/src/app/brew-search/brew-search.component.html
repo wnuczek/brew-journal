@@ -5,7 +5,8 @@
   </label>
 
   <ul class="search-result brews">
-    <li *ngFor="let brew of brews$ | async">
+    @for (brew of brews$ | async; track brew) {
+    <li>
       <div class="brew">
         <span class="badge">{{ brew.number }}</span>
         <div class="info">
@@ -16,9 +17,8 @@
           </div>
         </div>
       </div>
-      <button class="delete" title="delete brew" (click)="delete(brew)">
-        X
-      </button>
     </li>
+
+    }
   </ul>
 </div>

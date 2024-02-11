@@ -1,22 +1,22 @@
 import { Component, OnInit } from "@angular/core";
-import { Brew } from "../brew";
-import { BrewService } from "../brew.service";
+import { Store } from "@ngrx/store";
+import { Observable } from "rxjs";
+import { BrewActions } from "../store/actions";
+import { AppState, Brew } from "../store/model";
+import { selectAllBrews } from "../store/selectors";
 
 @Component({
 	selector: "app-dashboard",
 	templateUrl: "./dashboard.component.html",
-	styleUrls: ["./dashboard.component.less"],
+	styleUrls: ["./dashboard.component.css"],
 })
 export class DashboardComponent implements OnInit {
-	brews: Brew[] = [];
+	brews$: Observable<Brew[]> | undefined;
 
-	constructor(private brewService: BrewService) {}
+	constructor(private store: Store<AppState>) {}
 
 	ngOnInit() {
-		this.getBrews();
-	}
-
-	getBrews(): void {
-		this.brewService.getBrews().subscribe((brews) => (this.brews = brews));
+		this.store.dispatch(BrewActions.loadBrews());
+		this.brews$ = this.store.select(selectAllBrews);
 	}
 }

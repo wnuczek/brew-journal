@@ -1,11 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-
 import { Observable, Subject } from "rxjs";
-
 import { debounceTime, distinctUntilChanged, switchMap } from "rxjs/operators";
-
-import { Brew } from "../brew";
 import { BrewService } from "../brew.service";
+import { Brew } from "../store/model";
 
 @Component({
 	selector: "app-brew-search",
