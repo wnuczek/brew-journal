@@ -11,3 +11,6 @@
 - [ ] show interface when remote data is loaded
 - [ ] statistics page with aggregated data
 - [ ] add additional data to ingredients (i.e. category: hop, time: 60 min)
+
+- [ ] unit tests
+- [ ] testing as CI/CD step
