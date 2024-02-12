@@ -3,12 +3,12 @@
     <h1>{{ title }}</h1>
   </header>
   <nav>
-    <a routerLink="/dashboard">Główna</a>
-    <a routerLink="/brews">Lista</a>
-    @if (loggedIn) {
-    <a routerLink="/" (click)="logout()">Wyloguj</a>
+    <a routerLink="/dashboard">Home</a>
+    <a routerLink="/brews">List</a>
+    @if ((user$ | async ).loggedIn ) {
+    <a routerLink="/login">User</a>
     } @else {
-    <a routerLink="/login">Zaloguj</a>
+    <a routerLink="/login">Login</a>
     }
   </nav>
 </div>

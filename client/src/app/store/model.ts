@@ -1,5 +1,22 @@
+import { User } from "@angular/fire/auth";
+
 export interface AppState {
-	brews: ReadonlyArray<Brew>;
+	user: UserState;
+	brews: BrewsState;
+}
+
+export interface UserState {
+	loggedIn: boolean;
+	user?: User;
+	id?: string;
+	email?: string;
+	errorMsg?: string;
+}
+
+export interface BrewsState {
+	list: Brew[];
+	lastUpdated?: Date;
+	selectedBrew?: Brew;
 }
 
 export interface Brew {

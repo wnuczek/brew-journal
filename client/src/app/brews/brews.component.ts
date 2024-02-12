@@ -1,12 +1,12 @@
 import { Location } from "@angular/common";
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, inject } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { BrewService } from "../brew.service";
 import { BrewActions } from "../store/actions";
 import { AppState, Brew } from "../store/model";
-import { selectAllBrews } from "../store/selectors";
+import { selectAllBrews, selectUserLoggedIn } from "../store/selectors";
 
 @Component({
 	selector: "app-brews",
@@ -20,11 +20,14 @@ export class BrewsComponent implements OnInit {
 
 	selectedBrew: Brew;
 
-	loggedIn = "false";
+	private store: Store<AppState> = inject(Store);
+	loggedIn$ = this.store.select(selectUserLoggedIn);
 
 	id: number;
 
 	image;
+
+	collapsed = true;
 
 	public mask = [
 		/\d/,
@@ -49,16 +52,13 @@ export class BrewsComponent implements OnInit {
 	];
 
 	constructor(
-		private store: Store<AppState>,
 		private brewService: BrewService,
 		private location: Location,
 		private route: ActivatedRoute,
 	) {}
 
 	ngOnInit() {
-		this.loggedIn = localStorage.getItem("loggedIn");
-		//console.log('logged in = ' + this.loggedIn);
-		this.store.dispatch(BrewActions.loadBrews());
+		this.store.dispatch(BrewActions.loadBrews({}));
 		this.brews$ = this.store.select(selectAllBrews);
 
 		const id = +this.route.snapshot.paramMap.get("id");
@@ -67,7 +67,10 @@ export class BrewsComponent implements OnInit {
 		}
 	}
 
-	collapsed = true;
+	refreshBrewList() {
+		this.store.dispatch(BrewActions.loadBrews({ forceRefresh: true }));
+	}
+
 	toggleCollapsed(): void {
 		//console.log("collapse toggled");
 		this.collapsed = !this.collapsed;

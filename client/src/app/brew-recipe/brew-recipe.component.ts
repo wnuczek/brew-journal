@@ -1,30 +1,19 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { BrewService } from "../brew.service";
-import { Brew, Ingredient } from "../store/model";
+import { Component, Input, inject } from "@angular/core";
+import { Store } from "@ngrx/store";
+import { AppState, Brew, Ingredient } from "../store/model";
+import { selectUserLoggedIn } from "../store/selectors";
 
 @Component({
 	selector: "app-brew-recipe",
 	templateUrl: "./brew-recipe.component.html",
 	styleUrls: ["./brew-recipe.component.css"],
 })
-export class BrewRecipeComponent implements OnInit {
+export class BrewRecipeComponent {
 	@Input() ingredient: Ingredient;
 	@Input() brew: Brew;
 
-	loggedIn = false;
-
-	//@Input() newIngredient: Ingredient;
-
-	//this.ingredient.brew_id=this.brew.id;
-
-	constructor(private brewService: BrewService) {}
-
-	ngOnInit() {
-		//console.log('var brew = '+this.brew.id);
-		if (this.brew) {
-			this.loggedIn = localStorage.getItem("loggedIn") === "true";
-		}
-	}
+	private store: Store<AppState> = inject(Store);
+	loggedIn$ = this.store.select(selectUserLoggedIn);
 
 	onSelect(ingredient: Ingredient): void {
 		this.ingredient = ingredient;

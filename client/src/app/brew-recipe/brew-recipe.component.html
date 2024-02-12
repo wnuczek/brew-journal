@@ -1,4 +1,4 @@
-@if (brew) {
+@if (brew && { 'value': loggedIn$ | async}; as loggedIn) {
 <h2>Składniki warki #{{ brew.number }}</h2>
 @if (brew.ingredients.length) {
 <div>Ilość składników: {{ brew.ingredients.length }}</div>
@@ -10,7 +10,7 @@
       <input
         [(ngModel)]="ingredient.name"
         placeholder="nazwa"
-        [attr.disabled]="!loggedIn"
+        [attr.disabled]="!loggedIn.value"
       />
     </label>
     <label class="col-sm-2"
@@ -18,7 +18,7 @@
       <input
         [(ngModel)]="ingredient.quantity"
         placeholder="ilość"
-        [attr.disabled]="!loggedIn"
+        [attr.disabled]="!loggedIn.value"
       />
     </label>
     <label class="col-sm-2"
@@ -26,10 +26,10 @@
       <input
         [(ngModel)]="ingredient.unit"
         placeholder="jedn."
-        [attr.disabled]="!loggedIn"
+        [attr.disabled]="!loggedIn.value"
       />
     </label>
-    @if (loggedIn) {
+    @if (loggedIn.value) {
     <button
       class="delete"
       title="delete ingredient"
@@ -39,7 +39,7 @@
     </button>
     }
   </li>
-  } @if (loggedIn && brew.ingredients.length != 0) {
+  } @if (loggedIn.value && brew.ingredients.length != 0) {
   <button class="save" (click)="save()">
     <i class="fas fa-save"></i>
   </button>
@@ -47,9 +47,7 @@
 </ul>
 } @else {
 <h3>No ingredients info</h3>
-} 
-
-@if (loggedIn) {
+} @if (loggedIn.value) {
 <div class="add-ingredient">
   <li class="row">
     <label class="col-sm-6"

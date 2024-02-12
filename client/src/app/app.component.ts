@@ -1,5 +1,8 @@
-import { Location } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
+import { Store } from "@ngrx/store";
+import { UserActions } from "./store/actions";
+import { AppState } from "./store/model";
+import { selectUser } from "./store/selectors";
 
 @Component({
 	selector: "app-root",
@@ -7,23 +10,12 @@ import { Component } from "@angular/core";
 	styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-	title = "Dziennik piwowara";
-	//loggedIn: string = 'false';
+	title = "Brew journal";
 
-	constructor(private location: Location) {}
+	private store: Store<AppState> = inject(Store);
+	user$ = this.store.select(selectUser);
 
-	loggedIn = localStorage.getItem("loggedIn");
-
-	logout(): void {
-		localStorage.removeItem("loggedIn");
-		window.location.reload();
-	}
-
-	ngOnInit() {
-		this.loggedIn = localStorage.getItem("loggedIn");
-	}
-
-	ngOnChanges() {
-		this.loggedIn = localStorage.getItem("loggedIn");
+	constructor() {
+		this.store.dispatch(UserActions.login({}));
 	}
 }

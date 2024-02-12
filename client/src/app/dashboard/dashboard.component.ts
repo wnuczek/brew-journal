@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
 	constructor(private store: Store<AppState>) {}
 
 	ngOnInit() {
-		this.store.dispatch(BrewActions.loadBrews());
+		this.store.dispatch(BrewActions.loadBrews({}));
 		this.brews$ = this.store.select(selectAllBrews);
 	}
 }

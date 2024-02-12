@@ -1,38 +1,48 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+	--bg-color: #333;
+	--default-font-color: #fff;
+	--accent-font-color: #920918;
+}
+
+
 body {
 	font-family: 'Oswald', sans-serif;
-	background-color: #333;
-	color: white;
+	background-color: var(--bg-color);
+	color: var(--default-font-color);
 }
 
 app-root {
 	max-height: 100vh;
 	min-height: 100vh;
-	max-width: 1200px; 
+	max-width: 1200px;
 	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
 	flex-flow: column;
 	flex-wrap: nowrap;
 	justify-content: space-between;
+
+	/* router outlet component */
+	> :nth-child(3) {
+		height: 100dvh;
+	}
 }
 
 a {
 	text-decoration: none;
-	color: #920918;
+	color: var(--accent-font-color);
 }
 
-a:hover, a:visited {
+a:hover,
+a:visited {
 	text-decoration: none;
 }
 
 a:hover {
-	color: white;
+	color: var(--default-font-color);
 }
 
-a:visited {
-
-}
+a:visited {}
 
 .banner {
 	width: 100%;

@@ -1,6 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import { Store } from "@ngrx/store";
+import { UserActions } from "../store/actions";
+import { AppState } from "../store/model";
+import { selectUser } from "../store/selectors";
 
 @Component({
 	selector: "app-login",
@@ -9,34 +12,40 @@ import { Router } from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 	loginForm: FormGroup;
-	submitted: boolean = false;
-	invalidLogin: boolean = false;
+	submitted = false;
 
-	constructor(
-		private formBuilder: FormBuilder,
-		private router: Router,
-	) {}
+	private store: Store<AppState> = inject(Store);
+	user$ = this.store.select(selectUser);
 
-	onSubmit() {
-		this.submitted = true;
-		if (this.loginForm.invalid) {
-			return;
-		}
-		if (
-			this.loginForm.controls.login.value == "admin" &&
-			this.loginForm.controls.password.value == "wareczka"
-		) {
-			localStorage.setItem("loggedIn", "true");
-			this.router.navigate(["brews"]);
-		} else {
-			this.invalidLogin = true;
-		}
-	}
+	constructor(private formBuilder: FormBuilder) {}
 
 	ngOnInit() {
 		this.loginForm = this.formBuilder.group({
-			login: ["", Validators.required],
+			login: ["", [Validators.required, Validators.email]],
 			password: ["", Validators.required],
 		});
+	}
+
+	register() {
+		this.submitted = true;
+		this.store.dispatch(
+			UserActions.register({
+				email: this.loginForm.controls.login.value,
+				password: this.loginForm.controls.password.value,
+			}),
+		);
+	}
+
+	login() {
+		this.submitted = true;
+		this.store.dispatch(
+			UserActions.login({
+				email: this.loginForm.controls.login.value,
+				password: this.loginForm.controls.password.value,
+			}),
+		);
+	}
+	logout() {
+		this.store.dispatch(UserActions.logout());
 	}
 }

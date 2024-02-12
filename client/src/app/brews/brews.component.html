@@ -1,6 +1,9 @@
-<div class="row brews">
+<div class="row brews" *ngIf="{ value: loggedIn$ | async } as loggedIn">
   <div class="col-md-4 col-lg-4">
     <h2>Lista warek</h2>
+    <button class="refresh" (click)="refreshBrewList()">
+      <i class="fa-solid fa-arrows-rotate"></i>
+    </button>
     <!-- <app-brew-search></app-brew-search> -->
     @if (brews$ | async; as brews) {
     <div>Ilość warek: {{ brews.length }}</div>
@@ -20,7 +23,7 @@
             </div>
           </div>
         </div>
-        @if (loggedIn) {
+        @if (loggedIn.value) {
         <button class="delete" title="delete brew" (click)="delete(brew)">
           X
         </button>
@@ -39,75 +42,75 @@
     </div>
 
     <div class="inputs">
-      <label [class.disabled]="loggedIn != 'true'"
+      <label [class.disabled]="!loggedIn.value"
         >numer:
         <input
           [(ngModel)]="selectedBrew.number"
-          [disabled]="loggedIn != 'true'"
+          [disabled]="!loggedIn.value"
           placeholder="number"
         />
       </label>
-      <label [class.disabled]="loggedIn != 'true'"
+      <label [class.disabled]="!loggedIn.value"
         >nazwa:
         <input
           [(ngModel)]="selectedBrew.name"
-          [disabled]="loggedIn != 'true'"
+          [disabled]="!loggedIn.value"
           placeholder="name"
         />
       </label>
-      <label [class.disabled]="loggedIn != 'true'"
+      <label [class.disabled]="!loggedIn.value"
         >styl:
         <input
           [(ngModel)]="selectedBrew.style"
-          [disabled]="loggedIn != 'true'"
+          [disabled]="!loggedIn.value"
           placeholder="styl"
         />
       </label>
-      <label [class.disabled]="loggedIn != 'true'"
+      <label [class.disabled]="!loggedIn.value"
         >alc:
         <input
           [(ngModel)]="selectedBrew.alc"
-          [disabled]="loggedIn != 'true'"
+          [disabled]="!loggedIn.value"
           placeholder="alc"
         />
       </label>
-      <label [class.disabled]="loggedIn != 'true'"
+      <label [class.disabled]="!loggedIn.value"
         >blg:
         <input
           [(ngModel)]="selectedBrew.blg"
-          [disabled]="loggedIn != 'true'"
+          [disabled]="!loggedIn.value"
           placeholder="blg"
         />
       </label>
-      <label [class.disabled]="loggedIn != 'true'"
+      <label [class.disabled]="!loggedIn.value"
         >data warzenia:
         <input
           [(ngModel)]="selectedBrew.brew_date"
-          [disabled]="loggedIn != 'true'"
+          [disabled]="!loggedIn.value"
           placeholder="data warzenia"
         />
       </label>
-      <label [class.disabled]="loggedIn != 'true'"
+      <label [class.disabled]="!loggedIn.value"
         >data rozlewu:
         <input
           [(ngModel)]="selectedBrew.bottling_date"
-          [disabled]="loggedIn != 'true'"
+          [disabled]="!loggedIn.value"
           placeholder="data rozlewu"
         /><br />
       </label>
 
-      <label [class.disabled]="loggedIn != 'true'"
+      <label [class.disabled]="!loggedIn.value"
         >etykieta:
         <img src="{{ selectedBrew.label }}" alt="" />
         <input
           type="file"
           accept="image/*"
-          [disabled]="loggedIn != 'true'"
+          [disabled]="!loggedIn.value"
           (change)="changeListener($event)"
         />
       </label>
     </div>
-    @if (loggedIn) {
+    @if (loggedIn.value) {
     <button class="save" (click)="save()">
       <i class="fas fa-save"></i>
     </button>
@@ -122,7 +125,7 @@
     <h2>Wybierz warkę aby wyświetlić szczegóły</h2>
     <h2><--</h2>
   </div>
-  } @if (loggedIn) {
+  } @if (loggedIn.value) {
   <div class="add-brew col-md-4 col-lg-4">
     <li>
       <div class="brew">
