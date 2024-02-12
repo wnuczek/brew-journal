@@ -1,6 +1,6 @@
 {
   "hosting": {
-		"site": "brew-journal",
+    "site": "brew-journal",
     "public": "dist/browser",
     "ignore": [
       "firebase.json",
