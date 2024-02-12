@@ -45,6 +45,11 @@ jobs:
         uses: 'google-github-actions/auth@v2'
         with:
           credentials_json: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_WNUCZEK_TESTING }}'
-
+      - name: Create application.properties files
+        env:
+          SPRING_APPLICATION_PROD_PROPERTIES: ${{ secrets.SPRING_APPLICATION_PROD_PROPERTIES }}
+        run: |
+          echo $SPRING_APPLICATION_PROD_PROPERTIES > api/src/main/resources/application-prod.properties
+          echo $SPRING_APPLICATION_PROD_PROPERTIES > api/src/main/resources/application.properties
       - name: Maven Package
         run: mvn -B package appengine:deploy 
