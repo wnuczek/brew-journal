@@ -22,7 +22,7 @@ import pl.pawelwnuk.brewjournalapi.brew.Brew;
 
 @Getter
 @Setter
-@Table(name="users")
+@Table(name = "users")
 @Entity
 public class User {
 
@@ -32,7 +32,7 @@ public class User {
 
 	@Column(nullable = false)
 	private String firstName;
-	
+
 	@Column(nullable = false)
 	private String lastName;
 
@@ -47,20 +47,21 @@ public class User {
 
 	@Enumerated(EnumType.STRING)
 	private UserRole role;
- 
+
 	@Lob
 	private byte[] avatar;
 
 	@OneToMany(mappedBy = "user")
 	private List<Brew> brews;
 
-	protected User() {}
+	protected User() {
+	}
 
 	public User(String firstName, String lastName, String email) {
-    this.firstName = firstName;
-    this.lastName = lastName;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.email = email;
-  }
+	}
 
 	@Override
 	public String toString() {

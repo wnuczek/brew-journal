@@ -36,7 +36,7 @@ public class Brew {
 
 	@Column(nullable = false)
 	private String name;
-	
+
 	@Column(nullable = false)
 	private String style;
 
@@ -47,7 +47,7 @@ public class Brew {
 	private Date creation_date;
 
 	@ManyToOne()
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	private User user;
 
 	@OneToMany(mappedBy = "brew")
@@ -66,7 +66,7 @@ public class Brew {
 	protected Brew() {
 	}
 
-	public Brew(String name, String style,Integer number,  Integer alc, Integer blg) {
+	public Brew(String name, String style, Integer number, Integer alc, Integer blg) {
 		this.name = name;
 		this.style = style;
 		this.number = number;

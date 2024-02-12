@@ -16,7 +16,6 @@ public class IngredientController {
 	@Autowired
 	private IngredientRepository repository;
 
-
 	@GetMapping("")
 	public Iterable<Ingredient> ingredients() {
 		return repository.findAll();
