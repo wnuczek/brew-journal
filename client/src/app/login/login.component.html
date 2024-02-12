@@ -1,0 +1,56 @@
+@if (user$ | async; as user) { @if (user.loggedIn) {
+{{ user$ | async | json }}
+} @else {
+<form class="row" [formGroup]="loginForm">
+  <label
+    >Login:
+    <input type="text" formControlName="login" />
+  </label>
+  <div
+    *ngIf="
+      loginForm.controls.login.touched &&
+      loginForm.controls.login.hasError('required')
+    "
+    class="error"
+  >
+    Field is required
+  </div>
+  <div
+    *ngIf="
+      loginForm.controls.login.touched &&
+      loginForm.controls.login.hasError('email')
+    "
+    class="error"
+  >
+    Not an email
+  </div>
+  <label
+    >Password:
+    <input type="password" formControlName="password" />
+  </label>
+  <div
+    *ngIf="
+      loginForm.controls.password.touched &&
+      loginForm.controls.password.hasError('required')
+    "
+    class="error"
+  >
+    Field is required
+  </div>
+  <input
+    type="submit"
+    value="Login"
+    [disabled]="!loginForm.valid"
+    (click)="login()"
+  />
+  <input
+    type="submit"
+    value="Register"
+    [disabled]="!loginForm.valid"
+    (click)="register()"
+  />
+  <div *ngIf="submitted && user.errorMsg" class="error">
+    {{ user.errorMsg }}
+  </div>
+</form>
+} }

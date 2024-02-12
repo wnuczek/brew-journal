@@ -1,0 +1,40 @@
+@if (brew) {
+<h2>Szczegóły warki #{{ brew.number }}</h2>
+<div><span>id: </span>{{ brew.id }}</div>
+<div><span>data utworzenia: </span>{{ brew.creation }}</div>
+<div><span>data modyfikacji: </span>{{ brew.modification }}</div>
+
+<div class="inputs">
+  <label
+    >numer:
+    <input [(ngModel)]="brew.number" placeholder="number" />
+  </label>
+  <label
+    >nazwa:
+    <input [(ngModel)]="brew.name" placeholder="name" />
+  </label>
+  <label
+    >numer:
+    <input [(ngModel)]="brew.number" placeholder="number" />
+  </label>
+  <label
+    >styl:
+    <input [(ngModel)]="brew.style" placeholder="styl" />
+  </label>
+  <label
+    >alc:
+    <input [(ngModel)]="brew.alc" placeholder="alc" />
+  </label>
+  <label
+    >blg:
+    <input [(ngModel)]="brew.blg" placeholder="blg" />
+  </label>
+  <label
+    >data warzenia:
+    <input [(ngModel)]="brew.brew_date" placeholder="data warzenia" />
+  </label>
+</div>
+<button (click)="goBack()">go back</button>
+<button (click)="save()">save</button>
+
+}

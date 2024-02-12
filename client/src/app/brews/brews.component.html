@@ -1,0 +1,148 @@
+<div class="row brews" *ngIf="{ value: loggedIn$ | async } as loggedIn">
+  <div class="col-md-4 col-lg-4">
+    <h2>Lista warek</h2>
+    <button class="refresh" (click)="refreshBrewList()">
+      <i class="fa-solid fa-arrows-rotate"></i>
+    </button>
+    <!-- <app-brew-search></app-brew-search> -->
+    @if (brews$ | async; as brews) {
+    <div>Ilość warek: {{ brews.length }}</div>
+    <ul class="brews">
+      @for (brew of brews; track brew) {
+      <li
+        (click)="onSelect(brew)"
+        [class.selected]="brew === selectedBrew || id == brew.id"
+      >
+        <div class="brew" routerLink="/brews/{{ brew.id }}">
+          <span class="badge">{{ brew.number }}</span>
+          <div class="info">
+            <div class="name">{{ brew.name }}</div>
+            <div class="details">
+              styl: <b>{{ brew.style }}</b> alc: <b>{{ brew.alc }}%</b> blg:
+              <b>{{ brew.blg }}°</b>
+            </div>
+          </div>
+        </div>
+        @if (loggedIn.value) {
+        <button class="delete" title="delete brew" (click)="delete(brew)">
+          X
+        </button>
+        }
+      </li>
+      }
+    </ul>
+    }
+  </div>
+  @if (selectedBrew){
+  <div class="brew-details col-md-4 col-lg-4">
+    <h2>Szczegóły warki #{{ selectedBrew.number }}</h2>
+    <div>
+      <span>id: </span>{{ selectedBrew.id }} | <span>data utworzenia: </span
+      >{{ selectedBrew.creation }}
+    </div>
+
+    <div class="inputs">
+      <label [class.disabled]="!loggedIn.value"
+        >numer:
+        <input
+          [(ngModel)]="selectedBrew.number"
+          [disabled]="!loggedIn.value"
+          placeholder="number"
+        />
+      </label>
+      <label [class.disabled]="!loggedIn.value"
+        >nazwa:
+        <input
+          [(ngModel)]="selectedBrew.name"
+          [disabled]="!loggedIn.value"
+          placeholder="name"
+        />
+      </label>
+      <label [class.disabled]="!loggedIn.value"
+        >styl:
+        <input
+          [(ngModel)]="selectedBrew.style"
+          [disabled]="!loggedIn.value"
+          placeholder="styl"
+        />
+      </label>
+      <label [class.disabled]="!loggedIn.value"
+        >alc:
+        <input
+          [(ngModel)]="selectedBrew.alc"
+          [disabled]="!loggedIn.value"
+          placeholder="alc"
+        />
+      </label>
+      <label [class.disabled]="!loggedIn.value"
+        >blg:
+        <input
+          [(ngModel)]="selectedBrew.blg"
+          [disabled]="!loggedIn.value"
+          placeholder="blg"
+        />
+      </label>
+      <label [class.disabled]="!loggedIn.value"
+        >data warzenia:
+        <input
+          [(ngModel)]="selectedBrew.brew_date"
+          [disabled]="!loggedIn.value"
+          placeholder="data warzenia"
+        />
+      </label>
+      <label [class.disabled]="!loggedIn.value"
+        >data rozlewu:
+        <input
+          [(ngModel)]="selectedBrew.bottling_date"
+          [disabled]="!loggedIn.value"
+          placeholder="data rozlewu"
+        /><br />
+      </label>
+
+      <label [class.disabled]="!loggedIn.value"
+        >etykieta:
+        <img src="{{ selectedBrew.label }}" alt="" />
+        <input
+          type="file"
+          accept="image/*"
+          [disabled]="!loggedIn.value"
+          (change)="changeListener($event)"
+        />
+      </label>
+    </div>
+    @if (loggedIn.value) {
+    <button class="save" (click)="save()">
+      <i class="fas fa-save"></i>
+    </button>
+    }
+  </div>
+  <app-brew-recipe
+    [brew]="selectedBrew"
+    class="col-md-4 col-lg-4"
+  ></app-brew-recipe>
+  } @else {
+  <div class="brew-details-placeholder col-md-8 col-lg-8">
+    <h2>Wybierz warkę aby wyświetlić szczegóły</h2>
+    <h2><--</h2>
+  </div>
+  } @if (loggedIn.value) {
+  <div class="add-brew col-md-4 col-lg-4">
+    <li>
+      <div class="brew">
+        <span class="badge">#</span>
+        <div class="info">
+          <label class="name">
+            <input #brewName placeholder="nazwa" />
+          </label>
+          <div class="details">
+            styl: <b>...</b> alc: <b>...</b> blg: <b>...</b>
+          </div>
+        </div>
+      </div>
+      <button class="add" (click)="add(brewName.value); brewName.value = ''">
+        +
+      </button>
+    </li>
+  </div>
+  }
+</div>

@@ -1,0 +1,24 @@
+<div id="search-component col-md-3">
+  <label
+    >Szukaj:
+    <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+  </label>
+
+  <ul class="search-result brews">
+    @for (brew of brews$ | async; track brew) {
+    <li>
+      <div class="brew">
+        <span class="badge">{{ brew.number }}</span>
+        <div class="info">
+          <div class="name">{{ brew.name }}</div>
+          <div class="details">
+            styl: <b>{{ brew.style }}</b> alc: <b>{{ brew.alc }}</b> blg:
+            <b>{{ brew.blg }}</b>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    }
+  </ul>
+</div>

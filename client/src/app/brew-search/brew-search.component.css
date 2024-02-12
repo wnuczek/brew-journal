@@ -1,0 +1,99 @@
+ul.search-result {
+	list-style: none;
+}
+
+ul.search-result li {
+	background: lightgrey;
+	border-radius: 5px 5px 5px 5px;
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+ul.search-result .badge {
+	background: grey;
+	border-radius: 5px 0px 0px 5px;
+	padding: 5px 10px;
+	font-size: 1rem;
+	height: 100%;
+	line-height: 24px;
+}
+
+ul.search-result button.delete {
+	background: grey;
+	border-radius: 0px 5px 5px 0;
+	padding: 5px 10px;
+	border: none;
+	font-size: 1rem;
+}
+
+ul.brews {
+	list-style: none;
+	padding: 0;
+}
+
+ul.brews li {
+	margin-bottom: 20px;
+	background: lightgrey;
+	border-radius: 5px 5px 5px 5px;
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+}
+
+ul.brews .brew {
+	display: flex;
+	flex-flow: row;
+	justify-content: flex-start;
+	align-items: center;
+	width: 100%;
+}
+
+ul.brews .brew:hover .info {
+	cursor: pointer;
+	color: inherit;
+}
+
+ul.brews .brew:hover {
+	cursor: pointer;
+}
+
+
+ul.brews .badge {
+	background: grey;
+	border-radius: 5px 0px 0px 5px;
+	padding: 5px 10px;
+	font-size: 2.2rem;
+	height: 100%;
+	line-height: 43px;
+}
+
+ul.brews .brew .info {
+	padding-left: 0.5rem;
+	color: #920918;
+	transition: .2s ease;
+}
+
+ul.brews .brew .name {
+	font-size: 1.4rem;
+}
+
+ul.brews .brew .details {
+	font-size: 0.8rem;
+}
+
+ul.brews button.delete {
+	background: grey;
+	border-radius: 0px 5px 5px 0;
+	padding: 5px 10px;
+	border: none;
+	font-size: 2.2rem;
+	line-height: 43px;
+}
+
+button {
+	margin: 0;
+}
