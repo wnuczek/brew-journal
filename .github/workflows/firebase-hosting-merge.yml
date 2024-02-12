@@ -47,9 +47,11 @@ jobs:
           credentials_json: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_WNUCZEK_TESTING }}'
       - name: Create application.properties files
         env:
+          CREDENTIALS_JSON: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_WNUCZEK_TESTING }}'
           SPRING_APPLICATION_PROD_PROPERTIES: ${{ secrets.SPRING_APPLICATION_PROD_PROPERTIES }}
         run: |
           echo $SPRING_APPLICATION_PROD_PROPERTIES > src/main/resources/application-prod.properties
           echo $SPRING_APPLICATION_PROD_PROPERTIES > src/main/resources/application.properties
+          echo $CREDENTIALS_JSON > credentials.json
       - name: Maven Package
-        run: mvn -B package appengine:deploy 
+        run: mvn -B package appengine:deploy -Dappengine.additionalParams=--service_account_json_key_file="credentials.json"
