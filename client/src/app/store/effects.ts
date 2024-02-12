@@ -8,7 +8,6 @@ import {
 	exhaustMap,
 	map,
 	switchMap,
-	tap,
 	withLatestFrom,
 } from "rxjs/operators";
 import { BrewService } from "../brew.service";
@@ -22,11 +21,8 @@ export class BrewsEffects {
 		this.actions$.pipe(
 			ofType(BrewActions.loadBrews),
 			withLatestFrom(this.store.select(selectBrewsUpToDate)),
-			tap(([action, brewsUpToDate]) => {
-				console.log(brewsUpToDate);
-			}),
 			exhaustMap(([action, brewsUpToDate]) => {
-				if (brewsUpToDate) return EMPTY;
+				if (brewsUpToDate && !action.forceRefresh) return EMPTY;
 				return this.brewsService.getBrews().pipe(
 					map((brews) => BrewActions.loadBrewsSuccess({ brews: brews })),
 					catchError(() => EMPTY),
